@@ -37,9 +37,16 @@ const getMatches=async()=>{
 
 
   return (
-    <div className='flex overflow-x-auto'>
+    <div className='flex overflow-hidden'>
         {
-            matches[0] && <MatchCards matchInfo={matches} />
+            matches[0] && matches.map((match,index)=> 
+            <div key={index}>
+              <MatchCards matchData={match} />
+              {
+                console.log(match)
+              }
+              </div>
+              )
         }
     
    
