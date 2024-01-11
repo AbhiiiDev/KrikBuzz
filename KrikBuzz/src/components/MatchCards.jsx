@@ -1,6 +1,7 @@
 
 import  PropTypes from "prop-types";
 import { FETCH_IMG } from "../constants/constants";
+import { useState,useEffect } from "react";
 const MatchCards = ({matchData}) => {
 
 
@@ -11,20 +12,45 @@ const {seriesName}=seriesAdWrapper;
 const {matches}=seriesAdWrapper;
 const {matchInfo,matchScore}=matches[0]
 const {team1,team2,status}=matchInfo;
-const {teamName:Team1Name,imageID:img1}=team1;
-const {teamName:Team2Name,imageID:img2}=team2;
+const {teamName:Team1Name,imageId:img1}=team1;
+const {teamName:Team2Name,imageId:img2}=team2;
 const {team1Score:{inngs1 :{runs:runs1,wickets:wkts1}}}=matchScore;
 const {team2Score:{inngs1:{runs:runs2,wickets:wkts2}}}=matchScore;
 // const {team2Score:}
 
 
-console.log(seriesAdWrapper)
-console.log(seriesMatches);
+// console.log(seriesAdWrapper)
+// console.log(seriesMatches);
+// console.log(img1)
 // const {seriesAdWrapper}=seriesMatches;
 // const {seriesName}=seriesAdWrapper;
 // console.log(seriesName);
 // console.log(seriesMatches);
 // console.log(matchType)
+
+
+
+const [image1,setImage1]=useState(null);
+const [image2,setImage2]=useState(null);
+useEffect(()=>
+{
+  const fetchImages = async () => {
+    try {
+      const image1Data = await FETCH_IMG(img1);
+      setImage1(image1Data);
+
+      const image2Data = await FETCH_IMG(img2);
+      setImage2(image2Data);
+    } catch (error) {
+      console.error('Error fetching images:', error);
+    }
+  };
+
+  fetchImages();
+
+},[img1,img2])
+
+console.log(image1,image2);
 
   return (
     <div className=' m-2 bg-white text-black shadow-lg w-[265px]  h-36 border rounded-md overflow-hidden'>
@@ -33,13 +59,15 @@ console.log(seriesMatches);
      </div>
      <div className='m-3'>
       <ul>
-        <li className='flex justify-around'>
-         {  FETCH_IMG(img1)+Team1Name}
+        <li className='flex justify-evenly'>
+      {image1 &&   <img className="w-[18px] h-3" src={`data:image/jpeg;base64,${arrayBufferToBase64(image1)}`} alt="flag"/>}
+         { Team1Name}
           <div className='ml-3 font-semibold'>
 {runs1+"-"+wkts1}
           </div>
         </li>
         <li className='flex justify-around'>
+       { image2 && <img className="w-[18px] h-3" src={`data:image/jpeg;base64,${arrayBufferToBase64(image2)}`} alt="flag"/>}
        {Team2Name}
           <div className='ml-3 font-semibold'>
 {runs2+"-"+wkts2}
@@ -53,6 +81,20 @@ console.log(seriesMatches);
      </div>
     </div>
   )
+}
+
+
+function arrayBufferToBase64(buffer) {
+  let binary = '';
+  const bytes = new Uint8Array(buffer);
+  console.log("bytes array: ", bytes)
+  const len = bytes.byteLength;
+  for (let i = 0; i < len; i++) {
+    binary += String.fromCharCode(bytes[i]);
+  }
+  console.log(btoa(binary))
+  return btoa(binary);
+  
 }
 
 

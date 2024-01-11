@@ -13,17 +13,18 @@ export async function FETCH_IMG(IMG_ID)
     // return img;
     const options = {
         method: 'GET',
-        url: `https://cricbuzz-cricket.p.rapidapi.com/img/v1/i1/${IMG_ID}/i.jpg`,
+        url: `https://cricbuzz-cricket.p.rapidapi.com/img/v1/i1/c${IMG_ID}/i.jpg`,
         headers: {
           'X-RapidAPI-Key':KEY,
           'X-RapidAPI-Host': HOST
-        }
+        },
+        responseType: 'arraybuffer' 
       };
 
     try {
-     const response= await axios.request(options).then(response=>console.log(response) );
-     console.log(response.data)
-        return  (await response).data;
+     const response= await axios.request(options);
+    //  console.log(response.data)
+        return (await response).data;
 
     } catch (error) {
         console.log(error)

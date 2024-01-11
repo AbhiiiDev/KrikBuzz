@@ -26,7 +26,7 @@ const getMatches=async()=>{
         const response=await axios.request(options);
         // console.log((await response).data.typeMatches);
         setMatches((await response)?.data?.typeMatches)
-        console.log(matches);
+        // console.log(matches);
     } catch (error) {
         console.log(error);
     }
@@ -37,13 +37,13 @@ const getMatches=async()=>{
 
 
   return (
-    <div className='flex overflow-hidden'>
+    <div className='flex overflow-hidden bg-gray-400'>
         {
             matches[0] && matches.map((match,index)=> 
             <div key={index}>
               <MatchCards matchData={match} />
               {
-                console.log(match)
+                // console.log(match)
               }
               </div>
               )
