@@ -12,18 +12,6 @@ const NewsHeadlines = ({newsData}) => {
     });
     console.log(filteredNews)
 
-    useEffect(()=>{
-
-    },[newsData])
-
-
-
-    
-
-   
-
-
-
   return (
     <div className='bg-white border my-2 w-52'>
       <p className='text-[#09ae84] font-bold text-xl m-2'>
