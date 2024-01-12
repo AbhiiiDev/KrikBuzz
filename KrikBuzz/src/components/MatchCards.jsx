@@ -50,7 +50,7 @@ useEffect(()=>
 
 },[img1,img2])
 
-console.log(image1,image2);
+
 
   return (
     <div className=' m-2 bg-white text-black shadow-lg w-[265px]  h-36 border rounded-md overflow-hidden'>
@@ -60,15 +60,27 @@ console.log(image1,image2);
      <div className='m-3'>
       <ul>
         <li className='flex justify-evenly'>
-      {image1 &&   <img className="w-[18px] h-3" src={`data:image/jpeg;base64,${arrayBufferToBase64(image1)}`} alt="flag"/>}
-         { Team1Name}
+<div className="flex ">
+{image1 &&   <img className="w-[18px] h-3 my-2" src={`data:image/jpeg;base64,${arrayBufferToBase64(image1)}`} alt="flag"/>} 
+<p className="mx-2">
+
+  { Team1Name}
+</p>
+       
+</div>
           <div className='ml-3 font-semibold'>
 {runs1+"-"+wkts1}
           </div>
         </li>
         <li className='flex justify-around'>
-       { image2 && <img className="w-[18px] h-3" src={`data:image/jpeg;base64,${arrayBufferToBase64(image2)}`} alt="flag"/>}
-       {Team2Name}
+        <div className="flex">
+{image2 &&   <img className="w-[18px] h-3 my-2 " src={`data:image/jpeg;base64,${arrayBufferToBase64(image2)}`} alt="flag"/>} 
+<p className="mx-2">
+
+  { Team2Name}
+</p>
+       
+</div>
           <div className='ml-3 font-semibold'>
 {runs2+"-"+wkts2}
           </div>
@@ -87,12 +99,12 @@ console.log(image1,image2);
 function arrayBufferToBase64(buffer) {
   let binary = '';
   const bytes = new Uint8Array(buffer);
-  console.log("bytes array: ", bytes)
+  
   const len = bytes.byteLength;
   for (let i = 0; i < len; i++) {
     binary += String.fromCharCode(bytes[i]);
   }
-  console.log(btoa(binary))
+ 
   return btoa(binary);
   
 }

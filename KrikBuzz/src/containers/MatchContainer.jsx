@@ -37,7 +37,7 @@ const getMatches=async()=>{
 
 
   return (
-    <div className='flex overflow-hidden bg-gray-400'>
+    <div className='flex overflow-hidden bg-gray-300'>
         {
             matches[0] && matches.map((match,index)=> 
             <div key={index}>
