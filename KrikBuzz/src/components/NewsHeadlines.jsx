@@ -25,7 +25,7 @@ const NewsHeadlines = ({newsData}) => {
                           <div className='m-2 font-medium text-[14px]' key={obj.id}>
                         {obj.story.hline}
                        
-                        <p className='my-1 font-light text-[13px]'>
+                        <p className='my-1 font-light text-[13px] ' key={obj.id}>
 
                         {
                         // THIS IS SHOWING TIME PUBLISHED LIKE : 5HR AGO 9HR AGO 

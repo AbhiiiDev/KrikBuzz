@@ -25,7 +25,7 @@ const getMatches=async()=>{
     try {
         const response=await axios.request(options);
         // console.log((await response).data.typeMatches);
-        setMatches((await response)?.data?.typeMatches)
+     await setMatches((await response)?.data?.typeMatches)
         // console.log(matches);
     } catch (error) {
         console.log(error);

@@ -4,8 +4,6 @@ import { FETCH_IMG } from "../constants/constants";
 import { useState,useEffect } from "react";
 const MatchCards = ({matchData}) => {
 
-
-const {matchType}=matchData;
 const {seriesMatches}=matchData;
 const {seriesAdWrapper}=seriesMatches[0];
 const {seriesName}=seriesAdWrapper;
