@@ -1,41 +1,32 @@
+import PropTypes from "prop-types";
 
+const SubHeader = ({ data }) => {
+  console.log(data);
 
-const SubHeader = () => {
+  const { seriesMatches } = data;
+
+  const { seriesAdWrapper } = seriesMatches[0];
+
+  const { matches } = seriesAdWrapper;
+
+  const { matchInfo } = matches[0];
+
+  const { stateTitle, state } = matchInfo;
+
+  const {
+    team1: { teamSName: team1Name },
+    team2: { teamSName: team2Name },
+  } = matchInfo;
+
   return (
-    <div className=' h-12 bg-gray-700 flex justify-between'>
-      <div className="">
+    <li className="text-white text-sm mx-2  p-2 hover:bg-gray-600 cursor-pointer">
+      {`${team1Name} vs ${team2Name} - ${state}`}
+    </li>
+  );
+};
 
-      <ul className="flex ">
-        <li className="text-white mx-2  p-2 hover:bg-gray-600 cursor-pointer">
-            Matches
-        </li>
-        <li className="text-white mx-2  p-2 hover:bg-gray-600 cursor-pointer">
-            Matches
-        </li>
-        <li className="text-white mx-2  p-2 hover:bg-gray-600 cursor-pointer">
-            Matches
-        </li>
-        <li className="text-white mx-2  p-2 hover:bg-gray-600 cursor-pointer">
-            Matches
-        </li>
-        <li className="text-white mx-2  p-2 hover:bg-gray-600 cursor-pointer">
-            Matches
-        </li>
-        <li className="text-white mx-2  p-2 hover:bg-gray-600 cursor-pointer">
-            Matches
-        </li>
-        <li className="text-white mx-2  p-2 hover:bg-gray-600 cursor-pointer">
-            Matches
-        </li>
-       
-      </ul>
+SubHeader.propTypes = {
+  data: PropTypes.object.isRequired,
+};
 
-      </div>
-      <div className="text-white mr-2">
-        All
-      </div>
-    </div>
-  )
-}
-
-export default SubHeader
+export default SubHeader;

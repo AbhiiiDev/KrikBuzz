@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import MatchCards from '../components/MatchCards'
 import { KEY,HOST } from '../constants/constants';
 import axios from 'axios';
+import SubHeader from '../components/SubHeader';
 
 
 const MatchContainer = () => {
@@ -37,7 +38,26 @@ const getMatches=async()=>{
 
 
   return (
+<>
+
+<div className=' h-12 bg-gray-800 flex justify-between'>
+      <ul className="flex">
+      <li className="text-white text-sm  p-2 bg-gray-900  hover:bg-gray-800 cursor-pointer">
+          MATCHES
+        </li>
+{
+            matches[0] && matches.map((match,index)=> 
+           <SubHeader key={index} data={match}/>
+              )
+        }
+       
+    </ul>
+    <div className="text-white text-sm mx-2  p-2 hover:bg-gray-600 cursor-pointer">
+          All
+         </div>
+    </div>
     <div className='flex overflow-hidden bg-gray-300'>
+    
         {
             matches[0] && matches.map((match,index)=> 
             <div key={index}>
@@ -48,10 +68,10 @@ const getMatches=async()=>{
               </div>
               )
         }
-    
    
   
     </div>
+</>
   )
 }
 

@@ -6,6 +6,7 @@ import axios from "axios";
 const Header = () => {
 
 const [teamList,setTeamList]=useState([]);
+const [teamHover, setTeamHover]=useState(false);
 const [hover,setHover]=useState(false);
 const [dropOptions,setDropOptions]=useState([]);
 
@@ -49,7 +50,7 @@ try {
 	const response = await axios.request(options);
 	
     await setTeamList(response.data.list);
-    console.log(teamList)
+   await console.log(teamList)
 } catch (error) {
 	console.error(error);
 }
@@ -57,16 +58,10 @@ try {
 
 const handleMouseEnter = () => {
     setHover(true);
-    console.log('Mouse entered');
-    
-    
   };
 
   const handleMouseLeave = () => {
     setHover(false);
-    console.log('Mouse left');
-    
-  
   };
 
   const handleDropDownEnter =()=> 
@@ -82,9 +77,6 @@ const handleMouseEnter = () => {
     
   }
 
-  useEffect(()=>{
-console.log('hover state after updated',hover)
-  },[hover])
 
 
 
@@ -101,8 +93,8 @@ console.log('hover state after updated',hover)
                 </li>
                 <li className="mx-3 cursor-pointer relative"   onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
                     News
-{ hover &&(
-<ul className="absolute top-full left-0 text-black bg-white shadow-md w-36 " onMouseEnter={handleDropDownEnter} onMouseLeave={handleDropDownLeave}>
+                    { hover &&(
+<ul className="absolute top-full left-0 text-black bg-white shadow-md w-36 " >
     { 
           dropOptions.slice(0,8).map((obj)=>{
         return(
@@ -123,8 +115,32 @@ console.log('hover state after updated',hover)
                 <li className="mx-3 cursor-pointer">
                     Series
                 </li>
-                <li className="mx-3 cursor-pointer">
+                <li className="mx-3 cursor-pointer relative" onMouseEnter={()=>setTeamHover(true)} onMouseLeave={()=>setTeamHover(false)}>
                     Teams
+                    { teamHover &&(
+<ul className="absolute top-full left-0 text-black bg-white shadow-md w-36 " >
+  <div>
+
+    { 
+          teamList.slice(1,13).map((obj)=>{
+            return(
+              <li key={obj.TeamId} className="py-2 px-4 hover:bg-gray-200">
+                {obj.teamName}
+            </li>
+        )
+      })
+} 
+      </div>
+
+    </ul>
+    )
+}
+
+
+
+
+
+                   
                 </li>
                 <li className="mx-3 cursor-pointer">
                     Rankings

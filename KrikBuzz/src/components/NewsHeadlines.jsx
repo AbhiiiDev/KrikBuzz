@@ -1,5 +1,4 @@
 import PropTypes from 'prop-types'
-import React, { useEffect, useState } from 'react'
 import { formatTimeAgo } from '../constants/constants';
 
 
@@ -10,7 +9,7 @@ const NewsHeadlines = ({newsData}) => {
     const filteredNews=newsData.filter(obj=>{
         return 'story' in obj
     });
-    console.log(filteredNews)
+
 
   return (
     <div className='bg-white border my-2 w-52'>
