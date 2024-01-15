@@ -9,7 +9,7 @@ function App() {
 
   return (
     <>
- <div className='mx-10 mt-2 bg-gray-300 '>
+ <div className='mx-10 mt-2 bg-gray-300'>
   <Header/>
   <MatchContainer/>
   <NewsContainer/>

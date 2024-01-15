@@ -1,6 +1,12 @@
 import PropTypes from "prop-types";
 import { FETCH_IMG } from "../constants/constants";
 import { useState, useEffect } from "react";
+import { arrayBufferToBase64 } from "../constants/constants";
+
+
+
+
+
 const MatchCards = ({ matchData }) => {
   const { seriesMatches } = matchData;
   const { seriesAdWrapper } = seriesMatches[0];
@@ -80,17 +86,7 @@ const MatchCards = ({ matchData }) => {
 
 //FUNCTION TO CONVERT TO IMG STRING
 
-function arrayBufferToBase64(buffer) {
-  let binary = "";
-  const bytes = new Uint8Array(buffer);
 
-  const len = bytes.byteLength;
-  for (let i = 0; i < len; i++) {
-    binary += String.fromCharCode(bytes[i]);
-  }
-
-  return btoa(binary);
-}
 
 MatchCards.propTypes = {
   matchData: PropTypes.object.isRequired,

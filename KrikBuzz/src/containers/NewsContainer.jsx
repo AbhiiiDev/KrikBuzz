@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { HOST, KEY } from '../constants/constants';
 import axios from 'axios';
 import NewsHeadlines from '../components/NewsHeadlines';
+import NewsCard from '../components/NewsCard';
 
 const NewsContainer = () => {
 
@@ -38,17 +39,24 @@ setNews(json.storyList);
 
 }
 
+const filteredNews=news.filter(obj=>{
+  return 'story' in obj
+});
 
   return (
-    <div className='bg-gray-300 mx-2'>
+    <div className='bg-gray-300 mx-2 flex'>
 
 <NewsHeadlines newsData={news}/>
 
-      {
-        // NEWS HEADLINE     BROAD NEWS CARDS    NEWS NORMAL CARDS
-
-     
-      }
+<div className='my-2'>
+  {
+    filteredNews.map((obj)=>{
+      return <NewsCard key={obj.id} info={obj}/>
+    })
+  }
+</div>
+  
+    
     </div>
   )
 }
