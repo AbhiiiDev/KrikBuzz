@@ -1,20 +1,35 @@
 
 import './App.css'
-import Header from './components/Header'
-import MatchContainer from './containers/MatchContainer'
-import NewsContainer from './containers/NewsContainer'
+import Body from './components/Body'
+import Footer from './components/Footer'
+import LiveScore from './components/LiveScore'
+import { RouterProvider, createBrowserRouter } from 'react-router-dom'
+import MoveToTopButton from './components/MoveToTopButton'
 
 function App() {
 
+  const appRouter=createBrowserRouter([{
+    path:"/",
+    element:<Body/>,
+  
+  },
+  {
+    path:"/liveScore",
+    element:<LiveScore/>
+   }],
+)
 
   return (
     <>
- <div className='mx-10 mt-2 bg-gray-300'>
-  <Header/>
+ <div className='mx-10 mt-2 '>
+  <RouterProvider router={appRouter}/>
+  {/* <Header/>
   <MatchContainer/>
-  <NewsContainer/>
+  <NewsContainer/> */}
+ 
  </div>
-     
+ <Footer/>
+ <MoveToTopButton/>
     </>
   )
 }

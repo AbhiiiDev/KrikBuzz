@@ -3,6 +3,7 @@ import MatchCards from '../components/MatchCards'
 import { KEY,HOST } from '../constants/constants';
 import axios from 'axios';
 import SubHeader from '../components/SubHeader';
+import { Link } from 'react-router-dom';
 
 
 const MatchContainer = () => {
@@ -61,7 +62,9 @@ const getMatches=async()=>{
         {
             matches[0] && matches.map((match,index)=> 
             <div key={index}>
-              <MatchCards matchData={match} />
+             <Link to=''>
+               <MatchCards matchData={match} />
+              </Link>
               {
                 // console.log(match)
               }

@@ -3,10 +3,6 @@ import { FETCH_IMG } from "../constants/constants";
 import { useState, useEffect } from "react";
 import { arrayBufferToBase64 } from "../constants/constants";
 
-
-
-
-
 const MatchCards = ({ matchData }) => {
   const { seriesMatches } = matchData;
   const { seriesAdWrapper } = seriesMatches[0];
@@ -45,12 +41,13 @@ const MatchCards = ({ matchData }) => {
     fetchImages();
   }, [img1, img2]);
 
+
   return (
     <div className=" m-2 bg-white text-black shadow-lg w-[265px]  h-36 border rounded-md overflow-hidden">
       <div className="text-sm mx-2 text-red-900">{seriesName}</div>
       <div className="m-3">
         <ul>
-          <li className="flex justify-evenly">
+          <li className="flex ">
             <div className="flex ">
               {image1 && (
                 <img
@@ -61,9 +58,9 @@ const MatchCards = ({ matchData }) => {
               )}
               <p className="mx-2">{Team1Name}</p>
             </div>
-            <div className="ml-3 font-semibold">{runs1 + "-" + wkts1}</div>
+            <div className="ml-3 font-semibold items-end ">{runs1 + "-" + wkts1}</div>
           </li>
-          <li className="flex justify-around">
+          <li className="flex ">
             <div className="flex">
               {image2 && (
                 <img
@@ -83,10 +80,7 @@ const MatchCards = ({ matchData }) => {
   );
 };
 
-
 //FUNCTION TO CONVERT TO IMG STRING
-
-
 
 MatchCards.propTypes = {
   matchData: PropTypes.object.isRequired,
