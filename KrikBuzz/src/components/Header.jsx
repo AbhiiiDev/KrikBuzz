@@ -2,6 +2,7 @@ import { useEffect, useCallback } from "react";
 import { useState } from "react";
 import { KEY, HOST } from "../constants/constants";
 import axios from "axios";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   const [teamList, setTeamList] = useState([]);
@@ -62,14 +63,22 @@ const Header = () => {
 
   return (
     <div className="flex justify-evenly bg-[#09ae84]">
+       
+        <Link to='/'>
+      
+     
       <img
         className="h-20 cursor-pointer"
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJd6fe_4zNybRyHSfe3rVymQ2E3jD2-d-AfSJv583qglLFKiWIXKV9BHgkABF7dfaRk6M&usqp=CAU"
         alt="logo"
       />
+       </Link>
       <div className="mt-7">
         <ul className="text-white text-center flex  ">
+          <Link to='/livescore'>
+
           <li className="mx-3 cursor-pointer">Live Scores</li>
+          </Link>
           <li className="mx-3 cursor-pointer">Schedules</li>
           <li
             className="mx-3 cursor-pointer relative"
