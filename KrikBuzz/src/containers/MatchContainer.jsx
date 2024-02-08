@@ -58,11 +58,14 @@ const getMatches=async()=>{
          </div>
     </div>
     <div className='flex overflow-hidden bg-gray-300'>
+
+
     
         {
             matches[0] && matches.map((match,index)=> 
             <div key={index}>
-             <Link to=''>
+           
+             <Link to={'/livescore?v='+match.seriesMatches[0]?.seriesAdWrapper?.matches[0]?.matchInfo.matchId}>
                <MatchCards matchData={match} />
               </Link>
               {
