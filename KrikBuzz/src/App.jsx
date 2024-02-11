@@ -7,6 +7,9 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom'
 import MoveToTopButton from './components/MoveToTopButton'
 import MatchContainer from './containers/MatchContainer'
 import NewsContainer from './containers/NewsContainer'
+import Commentary from './components/Commentary'
+import Header from './components/Header'
+import Scorecard from './components/Scorecard'
 
 function App() {
 
@@ -24,7 +27,18 @@ function App() {
      ,
       {
         path:"/livescore",
-        element:<LiveScore/>
+        element:<LiveScore/>,
+        children:[
+          {
+            path:'commentary',
+            element:<Commentary/>
+          },
+          {
+            path:'scorecard',
+            element:<Scorecard/>
+          }
+        ]
+       
       }
       ,
     ]
@@ -35,8 +49,9 @@ function App() {
   return (
     <>
  <div className='mx-10 mt-2 '>
+
   <RouterProvider router={appRouter}/>
- 
+
  </div>
  <Footer/>
  <MoveToTopButton/>

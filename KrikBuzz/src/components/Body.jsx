@@ -10,10 +10,8 @@ import { Outlet } from 'react-router-dom'
 const Body = () => {
   return (
     <div className='bg-gray-300'>
-       <Header/>
-       <Outlet/>
-  {/* <MatchContainer/>
-  <NewsContainer/> */}
+      <Header/>
+  <Outlet/>
     </div>
   )
 }
