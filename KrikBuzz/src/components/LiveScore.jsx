@@ -19,12 +19,13 @@ const headings={
 }
 
 const LiveScore = () => {
+
+
   const [key]=useSearchParams();
-  // console.log(key.get("v"));
+  console.log(key.get("v"));
 
 
   const [matchHeader,setMatchHeader]=useState(null);
-  const [commentaryList,setCommentaryList]=useState([]);
 
 const  getData= async()=>{
 
@@ -42,8 +43,7 @@ try {
 	console.log(response.data);
   
  await setMatchHeader(response.data.matchHeader);
- setCommentaryList(response.data.commentaryList);
-  console.log(matchHeader)
+  // console.log(matchHeader)
 } catch (error) {
 	console.error(error);
 }
@@ -108,34 +108,22 @@ setActiveIndex(index);
   <ul className="flex mt-4 ">
     {headingList.map((item,index)=>(
   <li key={index} className={`cursor-pointer mx-4 ${ activeIndex=== index? "font-bold text-green-700 border-green-700 border-b-2 ": " "}`} onClick={()=>setIndex((index))}>
-     <Link to={`/livescore/${item.toLowerCase()}/?v=${key.get(key)}`}>{item}  </Link></li>
+     <Link to={`/livescore/${item.toLowerCase()}/?v=${key.get("v")}`}>{item}  </Link></li>
   ))}
   </ul>
 </section>
      <Outlet/>
-      <div>
-      <div className="font-bold text-lg mt-2 mb-3">
-          <p>
-            AUS 241/4 (20)
-          </p>
-          <p>
-            WI 207/4 (20)
-          </p>
-          <p className="text-sm font-light text-blue-500">
-            AUS won by 6 wkts
-          </p>
-          <hr className="mt-2" />
-          </div>
-        {commentaryList.map((comments)=>(
+      
+        {/* {commentaryList.map((comments)=>(
           <>
           <p>
             {comments.commText}
           </p>
      
           </>
-        ))}
+        ))} */}
       </div>
-    </div>
+    
   )
 }
 

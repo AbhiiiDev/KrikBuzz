@@ -10,6 +10,8 @@ import NewsContainer from './containers/NewsContainer'
 import Commentary from './components/Commentary'
 import Header from './components/Header'
 import Scorecard from './components/Scorecard'
+import LiveScores from './components/LiveScore'
+import LiveList from './components/LiveList'
 
 function App() {
 
@@ -25,6 +27,10 @@ function App() {
         </>
       }
      ,
+     {
+      path:"/livescores",
+      element:<LiveList/>
+     },
       {
         path:"/livescore",
         element:<LiveScore/>,
@@ -48,10 +54,8 @@ function App() {
 
   return (
     <>
- <div className='mx-10 mt-2 '>
-
+ <div className=' ml-24 justify-center mt-3 w-[1000px]'>
   <RouterProvider router={appRouter}/>
-
  </div>
  <Footer/>
  <MoveToTopButton/>

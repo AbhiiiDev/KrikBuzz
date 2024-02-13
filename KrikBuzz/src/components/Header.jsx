@@ -75,8 +75,7 @@ const Header = () => {
        </Link>
       <div className="mt-7">
         <ul className="text-white text-center flex  ">
-          <Link to='/livescore'>
-
+          <Link to='/livescores'>
           <li className="mx-3 cursor-pointer">Live Scores</li>
           </Link>
           <li className="mx-3 cursor-pointer">Schedules</li>

@@ -65,7 +65,7 @@ const getMatches=async()=>{
             matches[0] && matches.map((match,index)=> 
             <div key={index}>
            
-             <Link to={'/livescore?v='+match.seriesMatches[0]?.seriesAdWrapper?.matches[0]?.matchInfo.matchId}>
+             <Link to={'/livescore/commentary?v='+match.seriesMatches[0]?.seriesAdWrapper?.matches[0]?.matchInfo.matchId}>
                <MatchCards matchData={match} />
               </Link>
               {
