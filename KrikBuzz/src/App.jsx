@@ -28,11 +28,11 @@ function App() {
       }
      ,
      {
-      path:"/livescores",
+      path:"livescores",
       element:<LiveList/>
      },
       {
-        path:"/livescore",
+        path:"livescore",
         element:<LiveScore/>,
         children:[
           {
