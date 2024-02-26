@@ -29,14 +29,6 @@ const [matchInfo,setMatchInfo]=useState([]);
   
   }
 
-//   matchData.forEach(({ matchType, seriesMatches }) => {
-//     console.log("Match Type:", matchType);
-//     seriesMatches[0](({ seriesAdWrapper: { seriesId, seriesName } }) => {
-//         console.log("Series ID:", seriesId);
-//         console.log("Series Name:", seriesName);
-      
-//     });
-// });
 
 // matchData.forEach(({ matchType, seriesMatches }) => {
 //   console.log(matchType)
@@ -53,8 +45,15 @@ const [matchInfo,setMatchInfo]=useState([]);
 
 
 useEffect(()=>{
-getData();
-},[])
+
+const timer=setTimeout(()=>{
+  getData();
+  console.log('data fetched')
+},30000);
+
+return ()=>clearTimeout(timer);
+
+},)
 
 
 
@@ -71,27 +70,35 @@ getData();
 {matchData.map(({ matchType, seriesMatches }) => {
   if (seriesMatches.length > 0) {
     const { seriesAdWrapper: { seriesId, seriesName, matches } } = seriesMatches[0];
+const {matchInfo,matchScore}=matches[0];
+const {status,team1,team2,matchDesc}=matchInfo;
+const {teamName:team1Name}=team1;
+const {teamName:team2Name}=team2;
+
+const { team1Score, team2Score } = matchScore || {};
+// const {}
+
     return (
       <div key={seriesId} className='mb-5 '>
         <p className='bg-gray-200 text-xl font-bold p-2 '>{seriesName}</p>
       
-      <p className='font-bold  mt-3 p-2 '>India vs England <span className='font-light'> ,3rd Test</span></p>
+      <p className='font-bold  mt-1 p-2 '>{team1Name+" vs "+ team2Name}<span className='font-light'> ,{matchDesc}</span></p>
         {/* <p>{matches}</p> */}
-        <div className='bg-gray-100 mt-3 flex flex-col border-l-2 border-red-300 '>
+        <div className='bg-gray-100 mt-1 flex flex-col border-l-2 border-red-300 '>
         <div className='flex justify-start mx-2 '>
-        <p>IND</p>  <p className='ml-3'>445</p>
+        <p>{team1Name}</p> 
           </div>  
 
           <div className='flex justify-start mx-2'>
-          <p>ENG</p> <p>179-1</p>
+          <p>{team2Name}</p>
           
           </div>
-          <p className='text-red-500 mx-2'>Day 2: Stumps- England Trail by 234 runs</p>
+          <p className='text-red-500 mx-2'>{status}</p>
         </div>
       </div>
     );
   }
-  return null; // To handle the case where seriesMatches is empty
+  return null; 
 })}
 
       </div>
