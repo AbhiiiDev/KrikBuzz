@@ -51,9 +51,12 @@ const timer=setTimeout(()=>{
   console.log('data fetched')
 },30000);
 
+getData();
+
+
 return ()=>clearTimeout(timer);
 
-},)
+},[])
 
 
 
@@ -76,7 +79,8 @@ const {teamName:team1Name}=team1;
 const {teamName:team2Name}=team2;
 
 const { team1Score, team2Score } = matchScore || {};
-// const {}
+const {inngs1:{runs:run1,wickets:wicket1}}=team1Score || {};
+const {inngs1:{runs:run2,wickets:wicket2}}=team2Score || {};
 
     return (
       <div key={seriesId} className='mb-5 '>
@@ -87,10 +91,12 @@ const { team1Score, team2Score } = matchScore || {};
         <div className='bg-gray-100 mt-1 flex flex-col border-l-2 border-red-300 '>
         <div className='flex justify-start mx-2 '>
         <p>{team1Name}</p> 
+        <p className='text-gray-700 mx-4'> {run1}/{wicket1}</p>
           </div>  
 
           <div className='flex justify-start mx-2'>
           <p>{team2Name}</p>
+          <p className='text-gray-700 mx-4'> {run2}/{wicket2}</p>
           
           </div>
           <p className='text-red-500 mx-2'>{status}</p>
