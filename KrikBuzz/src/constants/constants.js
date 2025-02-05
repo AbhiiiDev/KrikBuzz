@@ -1,10 +1,7 @@
-export const  KEY='11ae9077acmsha499393bec2ab89p11f165jsnf82bdc55d078';
-export const  HOST= 'cricbuzz-cricket.p.rapidapi.com';
-
 import axios from "axios";
 
-
-
+export const KEY=import.meta.env.VITE_API_KEY;
+export const HOST=import.meta.env.VITE_HOST;
 
 
 export async function FETCH_IMG(IMG_ID)

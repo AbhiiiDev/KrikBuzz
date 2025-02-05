@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { KEY,HOST } from '../constants/constants';
 import axios from 'axios';
 import { useSearchParams } from 'react-router-dom';

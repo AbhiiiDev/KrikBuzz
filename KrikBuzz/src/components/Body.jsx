@@ -1,7 +1,5 @@
 
 import Header from './Header'
-import MatchContainer from '../containers/MatchContainer'
-import NewsContainer from '../containers/NewsContainer'
 import { Outlet } from 'react-router-dom'
 
 

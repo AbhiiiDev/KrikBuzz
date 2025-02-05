@@ -8,11 +8,13 @@ import MoveToTopButton from './components/MoveToTopButton'
 import MatchContainer from './containers/MatchContainer'
 import NewsContainer from './containers/NewsContainer'
 import Commentary from './components/Commentary'
-import Header from './components/Header'
 import Scorecard from './components/Scorecard'
-import LiveScores from './components/LiveScore'
 import LiveList from './components/LiveList'
+import '@mantine/core/styles.css';
+import  {MantineProvider} from '@mantine/core'
+import {QueryClient,QueryClientProvider} from '@tanstack/react-query'
 
+const queryClient=new QueryClient();
 function App() {
 
   const appRouter=createBrowserRouter([{
@@ -54,11 +56,17 @@ function App() {
 
   return (
     <>
- <div className=' ml-24 justify-center mt-3 w-[1000px]'>
+    <QueryClientProvider client={queryClient}>
+
+  <MantineProvider>
+ <div className='mx-auto  mt-3 w-[80%]'>
+
   <RouterProvider router={appRouter}/>
  </div>
  <Footer/>
  <MoveToTopButton/>
+  </MantineProvider>
+    </QueryClientProvider>
     </>
   )
 }
