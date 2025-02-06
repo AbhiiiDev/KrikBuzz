@@ -3,7 +3,7 @@ import { Skeleton } from '@mantine/core'
 const CardSkeleton = () => {
   return (
     <div>
-         <Skeleton h={36} w={265}/>
+         <Skeleton radius={10} h={150} w={265}/>
     </div>
   )
 }

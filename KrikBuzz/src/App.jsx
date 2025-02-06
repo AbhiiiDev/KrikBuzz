@@ -59,7 +59,7 @@ function App() {
     <QueryClientProvider client={queryClient}>
 
   <MantineProvider>
- <div className='mx-auto  mt-3 w-[80%]'>
+ <div className=''>
 
   <RouterProvider router={appRouter}/>
  </div>

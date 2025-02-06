@@ -3,8 +3,13 @@ import { useState } from "react";
 import { KEY, HOST } from "../constants/constants";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { ActionIcon, Drawer } from "@mantine/core";
+import { FaHamburger } from "react-icons/fa";
+import { useDisclosure } from "@mantine/hooks";
+
 
 const Header = () => {
+  const [opened, { open, close }] = useDisclosure(false);
   const [teamList, setTeamList] = useState([]);
   const [teamHover, setTeamHover] = useState(false);
   const [hover, setHover] = useState(false);
@@ -16,6 +21,7 @@ const Header = () => {
   }, []);
 
   const getNewsCategory = useCallback(async () => {
+
     const options = {
       method: "GET",
       url: "https://cricbuzz-cricket.p.rapidapi.com/news/v1/cat",
@@ -62,25 +68,23 @@ const Header = () => {
   };
 
   return (
-    <div className="flex justify-evenly bg-[#09ae84]">
-       
+    <div className="flex justify-between items-center bg-[#09ae84]  px-4">
         <Link to='/'>
-      
-     
       <img
         className="h-20 cursor-pointer"
         src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTJd6fe_4zNybRyHSfe3rVymQ2E3jD2-d-AfSJv583qglLFKiWIXKV9BHgkABF7dfaRk6M&usqp=CAU"
         alt="logo"
       />
        </Link>
-      <div className="mt-7">
-        <ul className="text-white text-center flex  ">
+
+      <div className="hidden md:block">
+        <ul className="text-white text-center flex gap-8 ">
           <Link to='/livescores'>
-          <li className="mx-3 cursor-pointer">Live Scores</li>
+          <li className=" cursor-pointer">Live Scores</li>
           </Link>
-          <li className="mx-3 cursor-pointer">Schedules</li>
+          <li className="cursor-pointer">Schedules</li>
           <li
-            className="mx-3 cursor-pointer relative"
+            className="cursor-pointer relative"
             onMouseEnter={handleMouseEnter}
             onMouseLeave={handleMouseLeave}
           >
@@ -98,9 +102,9 @@ const Header = () => {
             )}
           </li>
 
-          <li className="mx-3 cursor-pointer">Series</li>
+          <li className=" cursor-pointer">Series</li>
           <li
-            className="mx-3 cursor-pointer relative"
+            className=" cursor-pointer relative"
             onMouseEnter={() => setTeamHover(true)}
             onMouseLeave={() => setTeamHover(false)}
           >
@@ -122,14 +126,23 @@ const Header = () => {
               </ul>
             )}
           </li>
-          <li className="mx-3 cursor-pointer">Rankings</li>
+          <li className="cursor-pointer">Rankings</li>
         </ul>
       </div>
-      <div className="mt-7">
-        <input type="text" />
-        <button className="mx-1 p-1 text-white hover:bg-green-600 border rounded-md">
-          Search
-        </button>
+      {/* <div className=" md:flex hidden">
+        <Input size="xs" placeholder="Search..."  />
+          <Button size="xs" color="#09ae84">
+<CiSearch stroke="2"/>
+          </Button>
+      </div> */}
+      <div className="md:hidden">
+      <Drawer opened={opened} onClose={close} title="Authentication">
+        {/* Drawer content */}
+      </Drawer>
+
+  <ActionIcon variant="transparent" color="dark"  onClick={open}>
+      <FaHamburger  size={21}/>
+  </ActionIcon>
       </div>
     </div>
   );

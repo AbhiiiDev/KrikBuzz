@@ -1,4 +1,3 @@
-import React from 'react'
 
 const Footer = () => {
 
@@ -14,14 +13,14 @@ const Company=["Careers","Advertise","Privacy Policy","Terms of use","KrikBuzz T
   return (
     <div className='bg-[#4a4a4a] '>
 
-    <div className='flex justify-evenly m-5 p-5 '>
+    <div className='flex flex-col sm:flex-row justify-evenly m-5 p-5 gap-5 '>
      <img className='h-24 w-28' src='https://static.cricbuzz.com/images/cb_logo.svg' alt='logo'/>
     
 
       <ul className='text-white'>
-        <h1 className='font-bold text-xl'>Follow</h1>
+        <h1 className='font-bold text-xl mb-3'>Follow</h1>
         {Follow.map((item,index)=>(
-            <li key={index} >{item}</li>
+            <li className='mb-2 cursor-pointer' key={index} >{item}</li>
             ))}
       </ul>
       <ul className='text-white'>
