@@ -1,63 +1,32 @@
-import { useEffect, useCallback } from "react";
 import { useState } from "react";
-import { KEY, HOST } from "../constants/constants";
-import axios from "axios";
 import { Link } from "react-router-dom";
 import { ActionIcon, Drawer } from "@mantine/core";
 import { FaHamburger } from "react-icons/fa";
 import { useDisclosure } from "@mantine/hooks";
+import { useQuery } from "@tanstack/react-query";
+import { getNewsCategory, getTeamList } from "../api/categories";
+import DrawerContent from "./DrawerContent";
 
 
 const Header = () => {
   const [opened, { open, close }] = useDisclosure(false);
-  const [teamList, setTeamList] = useState([]);
   const [teamHover, setTeamHover] = useState(false);
   const [hover, setHover] = useState(false);
-  const [dropOptions, setDropOptions] = useState([]);
+  // const [dropOptions, setDropOptions] = useState([]);
+  const {data:dropOptions} =useQuery({
+    queryKey:["newsCategory"],
+    queryFn:getNewsCategory,
+    staleTime: 5 * 60 * 1000, // Cache for 5 mins
+    cacheTime: 10 * 60 * 1000, // Keep data for 10 mins
+  })
+  const {data:teamList} =useQuery({
+    queryKey:["teamList"],
+    queryFn:getTeamList,
+    staleTime: 5 * 60 * 1000, // Cache for 5 mins
+    cacheTime: 10 * 60 * 1000, // Keep data for 10 mins
+  })
 
-  useEffect(() => {
-    getNewsCategory();
-    getTeamList();
-  }, []);
 
-  const getNewsCategory = useCallback(async () => {
-
-    const options = {
-      method: "GET",
-      url: "https://cricbuzz-cricket.p.rapidapi.com/news/v1/cat",
-      headers: {
-        "X-RapidAPI-Key": KEY,
-        "X-RapidAPI-Host": HOST,
-      },
-    };
-
-    try {
-      const response = await axios.request(options);
-      //   console.log(response.data.storyType[0].name);
-      await setDropOptions(response.data.storyType);
-    } catch (error) {
-      console.error(error);
-    }
-  }, []);
-
-  const getTeamList = async () => {
-    const options = {
-      method: "GET",
-      url: "https://cricbuzz-cricket.p.rapidapi.com/teams/v1/international",
-      headers: {
-        "X-RapidAPI-Key": KEY,
-        "X-RapidAPI-Host": HOST,
-      },
-    };
-    try {
-      const response = await axios.request(options);
-
-      await setTeamList(response.data.list);
-      await console.log(teamList);
-    } catch (error) {
-      console.error(error);
-    }
-  };
 
   const handleMouseEnter = () => {
     setHover(true);
@@ -136,8 +105,9 @@ const Header = () => {
           </Button>
       </div> */}
       <div className="md:hidden">
-      <Drawer opened={opened} onClose={close} title="Authentication">
+      <Drawer opened={opened} onClose={close} title="KrikBuzz">
         {/* Drawer content */}
+        <DrawerContent dropOptions={dropOptions} teamList={teamList}/>
       </Drawer>
 
   <ActionIcon variant="transparent" color="dark"  onClick={open}>

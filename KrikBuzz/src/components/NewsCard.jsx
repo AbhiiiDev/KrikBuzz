@@ -1,4 +1,4 @@
-import React, { useState,useEffect } from 'react'
+import { useState,useEffect } from 'react'
 import PropTypes from 'prop-types';
 import { arrayBufferToBase64,FETCH_IMG } from '../constants/constants';
 
@@ -31,7 +31,7 @@ useEffect(() => {
 
   return (
 
-    <div className='bg-white w-[550px] mx-2 p-2'>
+    <div className='bg-white p-2'>
       <p className='text-sm mx-2 font-light'>{context.toUpperCase()}</p>
       <div>
       <img
@@ -40,10 +40,10 @@ useEffect(() => {
                   alt="news"
                 />
       </div>
-      <h3 className='mx-2 font-bold text-[24px]'>
+      <h3 className='mx-2 font-bold text-xl sm:text-2xl'>
         {hline}
       </h3>
-      <p className='mx-2 my-2 text-[#666]'>
+      <p className='mx-2 my-2 text-[#666] text-sm'>
         {intro}
       </p>
       <p className=''>

@@ -1,7 +1,7 @@
 import PropTypes from "prop-types";
 import { FETCH_IMG } from "../constants/constants";
-import { useState, useEffect } from "react";
 import { arrayBufferToBase64 } from "../constants/constants";
+import { useQuery } from "@tanstack/react-query";
 
 const MatchCards = ({ matchData }) => {
   const { seriesMatches } = matchData;
@@ -23,25 +23,20 @@ const MatchCards = ({ matchData }) => {
     },
   } = matchScore;
 
-  const [image1, setImage1] = useState(null);
-  const [image2, setImage2] = useState(null);
-  useEffect(() => {
-    const fetchImages = async () => {
-      try {
-        const image1Data = await FETCH_IMG(img1);
-        setImage1(image1Data);
-
-        const image2Data = await FETCH_IMG(img2);
-        setImage2(image2Data);
-      } catch (error) {
-        console.error("Error fetching images:", error);
-      }
-    };
-
-    fetchImages();
-  }, [img1, img2]);
-
-
+  const {data:image1}=useQuery({
+    queryKey: ["image", img1],  // Depend on img1,
+    queryFn: () => FETCH_IMG(img1),  // Fetch function,
+    enabled:!!img1,
+    staleTime: 5 * 60 * 1000, // Cache for 5 mins
+    cacheTime: 10 * 60 * 1000, // Keep data for 10 mins
+  })
+  const {data:image2}=useQuery({
+    queryKey: ["image", img1],  // Depend on img1,
+    queryFn: () => FETCH_IMG(img2),  // Fetch function,
+    enabled:!!img2,
+    staleTime: 5 * 60 * 1000, // Cache for 5 mins
+    cacheTime: 10 * 60 * 1000, // Keep data for 10 mins
+  })
   return (
     <div className=" m-2 bg-white text-black shadow-lg w-[265px]  h-36 border rounded-md overflow-hidden">
       <div className="text-sm mx-2 text-red-900">{seriesName}</div>

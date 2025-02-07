@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { HOST, KEY } from "../constants/constants";
 import axios from "axios";
 import NewsHeadlines from "../components/NewsHeadlines";
@@ -36,9 +36,8 @@ const NewsContainer = () => {
   });
 
   return (
-    <div className="bg-gray-300 mx-2 flex">
-      <div className="">
-
+    <div className="bg-gray-300 flex">
+      <div className="hidden md:block">
       <NewsHeadlines newsData={news} />
       </div>
 
