@@ -57,10 +57,8 @@ function App() {
   return (
     <>
     <QueryClientProvider client={queryClient}>
-
   <MantineProvider>
- <div className=''>
-
+ <div>
   <RouterProvider router={appRouter}/>
  </div>
  <Footer/>

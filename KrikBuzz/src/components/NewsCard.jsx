@@ -35,7 +35,7 @@ useEffect(() => {
       <p className='text-sm mx-2 font-light'>{context.toUpperCase()}</p>
       <div>
       <img
-                  className="w-[450px] h-[250px] mx-2 p-1 my-2  rounded-lg"
+                  className="w-full h-52 sm:h-60 mx-2 p-1 my-2  rounded-lg"
                   src={`data:image/jpeg;base64,${arrayBufferToBase64(img)}`}
                   alt="news"
                 />

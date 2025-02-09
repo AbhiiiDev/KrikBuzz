@@ -13,7 +13,7 @@ const NewsHeadlines = ({newsData}) => {
 
     return (
       filteredNews.length > 0 && ( // Render only if there is news
-        <div className='bg-white border my-2 w-52'>
+        <div className='bg-white border my-2 w-52 p-2'>
           <p className='text-[#09ae84] font-bold text-xl m-2'>Latest News</p>
           <div className='m-1'>
             {filteredNews.map((obj) => (

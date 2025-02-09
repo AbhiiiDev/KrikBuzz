@@ -57,17 +57,7 @@ const MatchContainer = () => {
         </div>
       </div>
 
-      <div className="p-2 flex flex-wrap bg-gray-400">
-      {/* <Button
-        className={`absolute left-0 top-1/2 -translate-y-1/2 ${
-          canScrollLeft ? "opacity-100" : "opacity-50 cursor-not-allowed"
-        }`}
-        onClick={() => scroll("left")}
-        disabled={!canScrollLeft}
-        variant="filled"
-      >
-                <FaAngleLeft />
-      </Button> */}
+      <div className="sm:p-2 flex justify-center flex-wrap bg-gray-400">
         {matches[0] &&
           matches.map((match, index) => (
             <div key={index}>
@@ -82,17 +72,6 @@ const MatchContainer = () => {
               </Link>
             </div>
           ))}
-          {/* <Button
-        className={`absolute right-0 top-1/2 -translate-y-1/2 ${
-          canScrollRight ? "opacity-100" : "opacity-50 cursor-not-allowed"
-        }`}
-        onClick={() => scroll("right")}
-        disabled={!canScrollRight}
-        variant="filled"
-      >
-        < FaAngleRight/>
-      </Button> */}
-
       </div>
     </>
   );
