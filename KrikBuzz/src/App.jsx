@@ -8,7 +8,7 @@ import MoveToTopButton from './components/MoveToTopButton'
 import MatchContainer from './containers/MatchContainer'
 import NewsContainer from './containers/NewsContainer'
 import Commentary from './components/Commentary'
-import Scorecard from './components/Scorecard'
+import Scorecard from './views/ScoreCardPage'
 import LiveList from './components/LiveList'
 import '@mantine/core/styles.css';
 import  {MantineProvider} from '@mantine/core'

@@ -1,57 +1,46 @@
-import { useEffect, useState } from 'react';
-import { KEY,HOST } from '../constants/constants';
-import axios from 'axios';
+import { useEffect } from 'react';
 import { useSearchParams } from 'react-router-dom';
+import { getData } from '../api/commentary';
+import {useQuery} from '@tanstack/react-query'
+import ErrorPage from '../views/ErrorPage';
 
 const Commentary = () => {
   const [id]=useSearchParams();
   console.log(useSearchParams(id.get("v")))
 
-  const [commentaryList,setCommentaryList]=useState([]);
-  const [matchHeader,setMatchHeader]=useState(null);
 
-  const  getData= async()=>{
-
-    const options = {
-      method: 'GET',
-      url: `https://cricbuzz-cricket.p.rapidapi.com/mcenter/v1/${id.get("v")}/comm`,
-      headers: {
-        'X-RapidAPI-Key': KEY,
-        'X-RapidAPI-Host': HOST
-      }
-    };
-    
-    try {
-      const response = await axios.request(options);
-      console.log(response.data);
-      await setMatchHeader(response.data.matchHeader);
-   await setCommentaryList(response.data.commentaryList);
-     
-    } catch (error) {
-      console.error(error);
-    }
-    }
-
+  const { data, isLoading, isError } = useQuery({
+    queryKey: ["matchData", id],  // Re-fetch when `id` changes
+    queryFn: () => getData(id),
+    enabled: !!id,  // Prevents running query if `id` is null/undefined
+  });
+  
   useEffect(()=>{
-getData();
-  },[])
+console.log("dataa",data?.matchHeader)
+  },[data])
+
+  if(isError){
+    return <ErrorPage/>
+  }
+
+
   return (
 
        <div className="bg-white mt-2 p-2">
 
 {
-  matchHeader ? (
+  !isLoading ? (
 <section id="Header" className="">
 <div>
       <div className="font-bold text-lg mt-2 mb-3">
-          <p>
-            AUS 241/4 (20)
-          </p>
-          <p>
-            WI 207/4 (20)
-          </p>
+          <div className='flex gap-10'>
+            <p>{data.matchHeader.team1.shortName}</p> <p> 241/4 (20)</p>
+          </div>
+          <div className='flex gap-10'>
+          <p>{data.matchHeader.team2.shortName} </p><p>207/4 (20)</p>
+          </div>
           <p className="text-sm font-light text-blue-500">
-            AUS won by 6 wkts
+          {data.matchHeader.status}
           </p>
           <hr className="mt-2" />
           </div>
@@ -61,12 +50,14 @@ getData();
 <p>Loading ......</p>
   )
 }
-       {commentaryList.map((comments,index)=>(
+       {data?.commentaryList.map((comments,index)=>(
           <>
-          <p key={index} className='m-3'> 
+          <div key={index} className='p-1 my-2'>
+            <p  className='text-sm mb-2'> 
             {comments.commText}
           </p>
           <hr />
+          </div>
           </>
         ))}
     </div>
