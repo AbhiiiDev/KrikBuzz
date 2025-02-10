@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { HOST, KEY } from "../constants/constants";
 import { Link, Outlet, useSearchParams } from "react-router-dom";
 import axios from "axios";
+import { ScrollArea } from "@mantine/core";
 
 const headingList = [
   "Commentary",
@@ -104,7 +105,8 @@ const LiveScore = () => {
         <p>Loading ......</p>
       )}
       <section id="list-header" className="mt-5  ">
-        <ul className="flex mt-4 overflow-x-scroll">
+        <ScrollArea type="never">
+        <ul className="flex mt-4">
           {headingList.map((item, index) => (
             <li
               key={index}
@@ -121,6 +123,7 @@ const LiveScore = () => {
             </li>
           ))}
         </ul>
+        </ScrollArea>
       </section>
       <Outlet />
 

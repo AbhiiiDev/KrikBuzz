@@ -60,7 +60,7 @@ const MatchContainer = () => {
 <ScrollArea type="never" className="sm:p-2">
   <div className="sm:p-2 flex justify-center bg-gray-400">
     {
-      isLoading && (<div className="flex gap-3 m-2 ">
+      isLoading && (<div className="flex gap-3 m-2 overflow-hidden ">
       <CardSkeleton />
       <CardSkeleton />
       <CardSkeleton />
