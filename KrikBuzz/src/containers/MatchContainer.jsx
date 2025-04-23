@@ -6,7 +6,7 @@ import { getMatches } from "../api/recentMatches";
 import { useQuery } from "@tanstack/react-query";
 import CardSkeleton from "../components/Skeletons/CardSkeleton";
 import ErrorPage from "../views/ErrorPage";
-import { ScrollArea } from "@mantine/core";
+import { Button, ScrollArea } from "@mantine/core";
 
 
 const MatchContainer = () => {
@@ -57,8 +57,8 @@ const MatchContainer = () => {
           All
         </div>
       </div>
-<ScrollArea type="never" className="sm:p-2">
-  <div className="sm:p-2 flex justify-center bg-gray-400">
+      <ScrollArea scrollbars="x" type="hover">
+  <div className="sm:p-2 flex  bg-gray-400 items-center">
     {
       isLoading && (<div className="flex gap-3 m-2 ">
       <CardSkeleton />
@@ -82,9 +82,9 @@ const MatchContainer = () => {
               </Link>
             </div>
           ))}
-      </div>
+          <Button color="white" variant="outline" className="rounded-full">More{" >"}</Button>
+      </div>      
       </ScrollArea>
-      
     </>
   );
 };

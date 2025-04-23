@@ -79,8 +79,12 @@ const {teamName:team1Name}=team1;
 const {teamName:team2Name}=team2;
 
 const { team1Score, team2Score } = matchScore || {};
-const {inngs1:{runs:run1,wickets:wicket1}}=team1Score || {};
-const {inngs1:{runs:run2,wickets:wicket2}}=team2Score || {};
+const run1=team1Score?.inngs1?.runs;
+const wicket1=team1Score?.inngs1?.wickets;
+const run2=team2Score?.inngs2?.runs;
+const wicket2=team2Score?.inngs2?.wickets;
+// const {inngs1:{runs:run1,wickets:wicket1}}=team1Score || {};
+// const {inngs1:{runs:run2,wickets:wicket2}}=team2Score || {};
 
     return (
       <div key={seriesId} className='mb-5 '>

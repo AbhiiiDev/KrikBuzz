@@ -41,7 +41,7 @@ const NewsContainer = () => {
       <NewsHeadlines newsData={news} />
       </div>
 
-      <div className="my-2 p-2">
+      <div className="mb-2 p-2 w-full sm:w-1/2">
         {filteredNews.map((obj) => {
           return <NewsCard key={obj.id} info={obj} />;
         })}

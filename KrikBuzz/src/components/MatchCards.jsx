@@ -12,17 +12,11 @@ const MatchCards = ({ matchData }) => {
   const { team1, team2, status } = matchInfo;
   const { teamName: Team1Name, imageId: img1 } = team1;
   const { teamName: Team2Name, imageId: img2 } = team2;
-  const {
-    team1Score: {
-      inngs1: { runs: runs1, wickets: wkts1 },
-    },
-  } = matchScore;
-  const {
-    team2Score: {
-      inngs1: { runs: runs2, wickets: wkts2 },
-    },
-  } = matchScore;
-
+  const runs1=matchScore?.team1Score?.inngs1?.runs ?? "";
+  const wkts1 = matchScore?.team1Score?.inngs1?.wickets ?? "";
+  const runs2 = matchScore?.team2Score?.inngs1?.runs ?? "";
+  const wkts2 = matchScore?.team2Score?.inngs1?.wickets ?? "";
+  
   const {data:image1}=useQuery({
     queryKey: ["image", img1],  // Depend on img1,
     queryFn: () => FETCH_IMG(img1),  // Fetch function,
@@ -43,34 +37,34 @@ const MatchCards = ({ matchData }) => {
       <div className="m-3">
         <ul>
           <li className="flex">
-            <div className="flex w-[70%] ">
+            <div className="flex w-[80%] text-sm items-center">
               {image1 && (
                 <img
-                  className="w-[18px] h-3 my-2"
+                  className="w-[18px] h-3 "
                   src={`data:image/jpeg;base64,${arrayBufferToBase64(image1)}`}
                   alt="flag"
                 />
               )}
               <p className="mx-2">{Team1Name}</p>
             </div>
-            <div className="ml-3 w-[30%] font-semibold items-end ">{runs1 + "-" + wkts1}</div>
+            <div className="ml-3 w-[20%] font-semibold items-end text-sm ">{runs1 + "-" + wkts1}</div>
           </li>
-          <li className="flex">
-            <div className="flex w-[70%]">
+          <li className="flex justify-end">
+            <div className="flex w-[80%] text-sm items-center">
               {image2 && (
                 <img
-                  className="w-[18px] h-3 my-2 "
+                  className="w-[18px] h-3"
                   src={`data:image/jpeg;base64,${arrayBufferToBase64(image2)}`}
                   alt="flag"
                 />
               )}
               <p className="mx-2">{Team2Name}</p>
             </div>
-            <div className="ml-3 w-[30%] font-semibold">{runs2 + "-" + wkts2}</div>
+            <div className="ml-3 w-[20%] font-semibold text-sm">{runs2 + "-" + wkts2}</div>
           </li>
         </ul>
       </div>
-      <div className="mt-3 mx-3 text-blue-500 ">{status}</div>
+      <div className="mt-3 mx-3 text-blue-500 text-sm">{status}</div>
     </div>
   );
 };
